@@ -1,0 +1,24 @@
+---
+# tasks file for tomcat
+
+- name: Tomcat Home Directory
+  file: path={{tomcat_installation}}/tomcat state=directory
+
+- name: Install Default JDK 1.8
+  apt: name=default-jdk state=present
+
+- name: Download Tomcat Tarball
+  get_url: url={{download_url}} dest={{tomcat_installation}}/tomcat.tar.gz mode=0777
+
+- name: Extract Tomcat tar
+  command: "tar zxf {{tomcat_installation}}/tomcat.tar.gz -C {{tomcat_installation}}/tomcat --strip-components 1"
+
+- name: Tomcat WebApp Dir
+  file: path={{tomcat_application_path}} state=directory
+
+- name: Deploy First page
+  copy: src=files/petclinic.war dest={{tomcat_application_path}}/petclinic.war
+
+- name: Start Tomcat App Server
+  shell: "nohup sh /opt/servers/tomcat/bin/catalina.sh start"
+

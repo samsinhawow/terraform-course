@@ -1,0 +1,6 @@
+---
+# vars file for tomcat
+tomcat_installation: "/opt/servers"
+tomcat_application_path: "/opt/servers/tomcat/webapps/"
+download_url: "https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.tar.gz"
+
