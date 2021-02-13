@@ -52,7 +52,7 @@ resource "null_resource" "ansible-main" {
        export ANSIBLE_HOST_KEY_CHECKING=False;
        echo "${aws_instance.backend[0].public_ip}"|tee -a terraform.ini;
        echo "${aws_instance.backend[1].public_ip}"|tee -a terraform.ini;
-       ansible-playbook --private-key ${var.private_key_file} -i terraform.ini -u ubuntu ./ansible/trial-playbook.yaml -v 
+       ansible-playbook --private-key ${var.private_key_file} -i terraform.ini -u ubuntu ./ansible/playbook.yaml -v 
      EOT
   }
   depends_on = [aws_instance.backend]
